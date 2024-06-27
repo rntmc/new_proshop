@@ -58,11 +58,11 @@ const OrderScreen = () => {
       })
   }
 
-  async function onApproveTest() {
-    await payOrder({orderId, details: {payer: {}}}) //payOrdercomes from our mutation
-      refetch() //refetch to show the status as paid
-      toast.success('Payment successful')
-  }
+  // async function onApproveTest() {
+  //   await payOrder({orderId, details: {payer: {}}}) //payOrdercomes from our mutation
+  //     refetch() //refetch to show the status as paid
+  //     toast.success('Payment successful')
+  // }
 
   function onError(error) {
     toast.error(error.message)
@@ -92,7 +92,7 @@ const OrderScreen = () => {
     }
   }
 
-  return isLoading ? <Loader/> : error ? <Message variant='danger' /> : (
+  return isLoading ? <Loader/> : error ? <Message variant='danger'>{error?.data?.error || error.error}</Message> : (
     <>
       <h1>Order {order._id}</h1>
       <Row>
